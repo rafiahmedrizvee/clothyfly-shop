@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo from "../../../assets/images/Logo.png";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion } from 'framer-motion';
+import { AuthContext } from "../../Context/UserContext";
 
 
 const Header = () => {
-
-          
+    const { name,logOut,user } = useContext(AuthContext);
     const [hoveredItem, setHoveredItem] = useState(null);
     const [scrolling, setScrolling] = useState(false);
-    
+    const location = useLocation();
     // Condition to show the second navbar
-   
+    const showSecondNavbar = location.pathname === '/' || location.pathname === '/home' || location.pathname === '/men-products' || location.pathname === '/women-products' || location.pathname === '/children-products' || location.pathname === '/accessories';
 
     // Track scroll position
     useEffect(() => {
@@ -25,6 +25,7 @@ const Header = () => {
 
         window.addEventListener('scroll', handleScroll);
 
+
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -32,28 +33,33 @@ const Header = () => {
 
   const navItems = (
     <React.Fragment>
-      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2">
+      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/100 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2 mx-2">
         
         <NavLink to="/home">Home</NavLink>
       </li>
-      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2">
+      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/100 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2 mx-2">
        
         <NavLink to="/about">About</NavLink>
       </li>
-      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2">
+      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-500 shadow-lg shadow-red-500/100 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2 mx-2">
        
         <NavLink to="/contact">Contact</NavLink>
       </li>
-      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2">
+      <li className="text-black hover:text-white hover:bg-gradient-to-r from-red-400 via-red-500 to-red-600  focus:ring-4 focus:outline-none focus:ring-red-300 shadow-lg shadow-red-500/100 dark:shadow-lg dark:shadow-red-800/80  rounded-lg text-sm font-bold text-center me-2 mb-2 mx-2">
        
-        <NavLink to="/log-in">Log in</NavLink>
+        <NavLink to="/sign-in">Log in</NavLink>
       </li>
+
+  
+          
+      
+        
     </React.Fragment>
   );
 
   return (
     <div className="">
-      <div className="navbar  bg-[#f7f7f7] shadow-sm px-10">
+      <div className="navbar  bg-secondary shadow-sm px-10">
         <div className="navbar-start justify-between md:justify-start w-[65%] md:w-[50%]">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -89,7 +95,9 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end w-[35%] md:w-[50%] ">
+         
           <div className="dropdown dropdown-end">
+            
             <div
               tabIndex={0}
               role="button"
@@ -97,28 +105,37 @@ const Header = () => {
             >
               <div className="w-10 rounded-full">
                 <img
-                  alt="Tailwind CSS Navbar component"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
+                            alt="Tailwind CSS Navbar component"
+                            src={
+                                user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                            }
+                            onError={(e) => {
+                                e.target.onerror = null;
+                                e.target.src = process;
+                            }}
+                        />
               </div>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
-              </li>
-              <li>
-                <a>Settings</a>
-              </li>
-              <li>
-                <a>Logout</a>
-              </li>
+              {
+                user?.emailVerified && (
+                    <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <li>
+                    <a className="justify-between">
+                        {user?.displayName}
+                        <span className="badge">{user?.email}</span>
+                    </a>
+                </li>
+                <li><a>{user?.uid?.slice(0, 7)}</a></li>
+                <li>
+                    {
+                        user?.uid ? <a onClick={logOut}>Logout</a> : <Link to="/login">Sign In</Link>
+                    }
+                </li>
             </ul>
+                )
+               }
           </div>
         </div>
       </div>

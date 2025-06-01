@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { CartContextApi } from '../../Context/CartContext';
 
 
 const HomeProducts = () => {
-   
+   const { handleAddToCart } = useContext(CartContextApi);
     const [homeProducts, setHomeProducts] = useState([]);
     useEffect(() => {
         fetch("home2.json")
@@ -15,7 +16,7 @@ const HomeProducts = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  md:gap-3 ">
                 {
                     homeProducts.map(homeProduct => (
-                        <div className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                        <div key={homeProduct.id} className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg'>

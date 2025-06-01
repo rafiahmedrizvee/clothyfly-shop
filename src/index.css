@@ -4,10 +4,11 @@
 
 
 
+
 :root {
         
         --color-primary: #da3c0a;
-        --color-secondary: #63a7c2;
+        --color-secondary: #f7f7f7;
         --color-accent: #6B7280;
         --color-background: #F9FAFB;
         --color-surface: #FFFFFF;
@@ -22,4 +23,5 @@
       .active{
         background-color:#da3c0a ;
         color: #FFFFFF;
+        height: 100%;
       }

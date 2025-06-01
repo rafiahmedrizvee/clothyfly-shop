@@ -1,8 +1,9 @@
-import React, {  useEffect, useState } from 'react';
-// import { CartContextApi } from '../../../context/CartContext';
+import React, {  useContext, useEffect, useState } from 'react';
+import { CartContextApi } from '../../Context/CartContext';
+
 
 const Product = () => {
-//     const { handleAddToCart } = useContext(CartContextApi);
+    const { handleAddToCart } = useContext(CartContextApi);
     // const { name, price, oldPrice, img, category } = product;
     const [products, setProducts] = useState([]);
 
@@ -12,12 +13,13 @@ const Product = () => {
             .then((data) => setProducts(data))
     }, [])
 
+
     return (
         <div className="my-5 flex justify-center">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  md:gap-3 ">
                 {
                     products.map(product => (
-                        <div className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                        <div key={product.id} className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg'>
@@ -47,7 +49,9 @@ const Product = () => {
                                     <div className="card-actions justify-center ">
                                         <button
                                             onClick={() => handleAddToCart(product)}
-                                            className="btn rounded-sm sm:w-[150px] md:w-[220px]  lg:w-[450px] xl:w-[450px]  2xl:w-[450px] mt-3 text-[19px] xl:text-xl hover:bg-[red] bg-[black] text-white xl:opacity-0 xl:group-hover:opacity-100 xl:transition-opacity  bottom-4 left-1/2 "
+                                            className="btn rounded-sm sm:w-[150px] md:w-[220px]  lg:w-[450px] xl:w-[450px]  2xl:w-[450px] mt-3 text-[19px] xl:text-xl hover:bg-primary bg-[black] text-white xl:opacity-0 xl:group-hover:opacity-100 xl:transition-opacity  bottom-4 left-1/2
+                                            
+                                            "
                                         >
                                             Shop Now
                                         </button>

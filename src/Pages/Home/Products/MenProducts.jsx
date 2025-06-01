@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { CartContextApi } from '../../Context/CartContext';
 
 const MenProducts = () => {
-
+const { handleAddToCart } = useContext(CartContextApi);
         const [menProducts, setMenProducts] = useState([]);
-    console.log(menProducts);
+
     useEffect(() => {
         fetch("menProductsCategory.json")
             .then((res) => res.json())
@@ -15,8 +16,8 @@ const MenProducts = () => {
             <Toaster />
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  md:gap-3 ">
                 {
-                    menProducts.map(menProduct => (
-                        <div className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                    menProducts.map(menProduct => ( 
+                        <div key={menProduct.id} className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg'>

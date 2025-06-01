@@ -6,8 +6,10 @@ import MenProducts from "../Pages/Home/Products/MenProducts";
 import WomenProducts from "../Pages/Home/Products/WomenProducts";
 import ChildrenProducts from "../Pages/Home/Products/ChildrenProducts";
 import AccessoriesProducts from "../Pages/Home/Products/AccessoriesProducts";
-import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import SignIn from "../Pages/Login/SignIn";
+import { productsAndCartLoader } from "../Loaders/productsAndCartLoader";
+import Orders from "../Pages/Orders/Orders";
 
 const router = createBrowserRouter([
   {
@@ -47,12 +49,17 @@ const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "/log-in",
-        element: <Login />,
+        path: "/sign-in",
+        element: <SignIn />,
       },
       {
         path: "/sign-up",
         element: <SignUp />,
+      },
+      {
+        path: "/orders",
+        loader: productsAndCartLoader,
+        element: <Orders> </Orders>,
       },
     ],
   },

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { CartContextApi } from '../../Context/CartContext';
 
 const ChildrenProducts = () => {
+    const { handleAddToCart } = useContext(CartContextApi);
          const [childrenProducts, setChildrenProducts] = useState([]);
     useEffect(() => {
         fetch("childrenProductsCategory.json")
@@ -14,7 +16,7 @@ const ChildrenProducts = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  md:gap-3  ">
                 {
                     childrenProducts.map(childrenProduct => (
-                        <div className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                        <div key={childrenProduct.id} className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg'>

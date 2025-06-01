@@ -51,24 +51,24 @@ const Home = () => {
                 <div className=' xl:w-5/6 gap-3 mx-2  grid grid-cols-2 xl:grid-cols-4 lg:grid-cols-2'>
                     <div className=' relative mx-auto h-auto overflow-hidden cursor-pointer'>
                       <Link to='/men-products' >
-                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10'>MEN</h3>
+                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10 transition hover:scale-105 hover:shadow-xl'>MEN</h3>
                         <img src="https://www.deshal.net/web/men.jpg" alt="" className="w-full object-cover relative z-0  transition-all duration-500  hover:scale-110 " />
                       </Link>
                     </div>
                     <div className=' relative mx-auto h-auto overflow-hidden cursor-pointer'>
                       <Link to='/women-products'>
-                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10'>WOMEN</h3>
+                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10 transition hover:scale-105 hover:shadow-xl'>WOMEN</h3>
                         <img src="https://www.deshal.net/web/women.jpg" alt="" className="w-full object-cover relative z-0  transition-all duration-500 hover:scale-110" />
                       </Link>
                     </div>
                     <div className=' relative mx-auto h-auto overflow-hidden cursor-pointer'>
                       <Link to='/children-products'>
-                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10'>CHILDREN</h3>
+                      <h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10 transition hover:scale-105 hover:shadow-xl'>CHILDREN</h3>
                         <img src="https://www.deshal.net/web/kid.jpg" alt="" className="w-full object-cover relative z-0  transition-all duration-500 hover:scale-110" />
                       </Link>
                     </div>
                     <div className=' relative mx-auto h-auto overflow-hidden cursor-pointer'>
-                      <Link to='/accessories-products'><h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10'>ACCESSORIES</h3>
+                      <Link to='/accessories-products'><h3 className='text-center md:text-5xl text-2xl font-bold md:font-extrabold text-primary pb-10 transition hover:scale-105 hover:shadow-xl'>ACCESSORIES</h3>
                         <img src="https://www.deshal.net/images/MainCategories/HomePageAccessoriesCoverPhoto.jpg" alt="" className="w-full h-full object-cover relative z-0  transition-all duration-500 hover:scale-110 " />
                         </Link>
                     </div>

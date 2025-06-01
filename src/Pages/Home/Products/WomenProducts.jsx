@@ -15,7 +15,7 @@ const WomenProducts = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  md:gap-2 ">
                 {
                     womenProducts.map(womenProduct => (
-                        <div className="rounded-md  bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                        <div key={womenProduct.id} className="rounded-md  bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg'>

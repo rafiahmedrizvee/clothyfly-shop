@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { CartContextApi } from '../../Context/CartContext';
 
 const AccessoriesProducts = () => {
-        //  const { handleAddToCart } = useContext(CartContextApi);
+         const { handleAddToCart } = useContext(CartContextApi);
     const [accessoriesProduct, setAccessoriesProduct] = useState([]);
     useEffect(() => {
         fetch("accessoriesProductsCategory.json")
@@ -15,7 +16,7 @@ const AccessoriesProducts = () => {
                 <Toaster />
                 {
                     accessoriesProduct.map(accessories => (
-                        <div className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
+                        <div key={accessories.id} className="rounded-md mx-0 bg-base-100 hover:shadow-2xl group relative md:w-[200px] xl:h-[450px] xl:w-[300px]">
                             {/* Product Image */}
                             <figure>
                                 <div className='w-full relative mx-auto h-auto overflow-hidden rounded-lg '>
