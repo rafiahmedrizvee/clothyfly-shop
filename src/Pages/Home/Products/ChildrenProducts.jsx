@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { CartContextApi } from '../../Context/CartContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp } from '@fortawesome/free-solid-svg-icons';
 
 const ChildrenProducts = () => {
     const { handleAddToCart } = useContext(CartContextApi);
@@ -10,6 +12,30 @@ const ChildrenProducts = () => {
             .then((res) => res.json())
             .then((data) => setChildrenProducts(data))
     }, [])
+
+    const [isVisible, setIsVisible] = useState(false);
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 100) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", toggleVisibility);
+    };
+  }, []);
         return (
                 <div className="mt-[100px] md:mt-[140px] mb-[50px] flex justify-center">
             <Toaster />
@@ -60,6 +86,17 @@ const ChildrenProducts = () => {
                     ))
                 }
             </div>
+             <div>
+        {/* Scroll to top button */}
+        {isVisible && (
+          <button
+            onClick={scrollToTop}
+            className="flex justify-center items-center fixed bottom-12 right-12 p-3 h-[55px] object-cover w-[55px] bg-gray-300 font-bold hover:text-white  rounded-full shadow-lg hover:bg-black transition-all"
+          >
+            <FontAwesomeIcon className="w-9 h-5 font-bold" icon={faAngleUp} />
+          </button>
+        )}
+      </div>
         </div>
         );
 };

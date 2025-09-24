@@ -37,7 +37,7 @@ const Home = () => {
      
         return (
               <div>
-            <Toaster />
+            
             <div>
                 <ImageSlider></ImageSlider>
             </div>
@@ -118,7 +118,7 @@ const Home = () => {
                 <h1>OUR OTHER EVENTS</h1>
             </div>
             <div className=" my-10 ">
-                <div className='grid grid-cols-2  gap-3 mx-2'>
+                <div className='grid grid-cols-5 gap-1 md:gap-2 mx-2'>
                     <div className="lg:h-[250px] lg:w-[250px] relative  overflow-hidden cursor-pointer">
                         <img className='object-contain relative z-0  transition-all duration-500 hover:scale-110' src="https://www.batabd.com/cdn/shop/files/north_640x.jpg?v=1720336875" alt="" />
                     </div>
